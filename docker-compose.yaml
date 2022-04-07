@@ -1,0 +1,13 @@
+version: "3"
+
+networks:
+  full-stack-networks:
+
+services:
+  php:
+    build: ./api
+    container_name: php-container
+    ports:
+      - "8000:8000"
+    volumes:
+      -
