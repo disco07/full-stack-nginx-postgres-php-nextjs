@@ -4,10 +4,22 @@ networks:
   full-stack-networks:
 
 services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx-container
+    ports:
+      - "80:80"
+    volumes:
+      - ./deploy/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - full-stack-networks
+
   php:
     build: ./api
     container_name: php-container
     ports:
       - "8000:8000"
     volumes:
-      -
+      - ./api:/var/www/html
+    networks:
+      - full-stack-networks

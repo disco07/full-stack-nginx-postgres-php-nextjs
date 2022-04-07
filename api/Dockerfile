@@ -14,7 +14,7 @@ RUN apt-get install -y libpq-dev \
 RUN git config --global user.email "example@example.fr" \
     &&  git config --global user.name "username"
 
-WORKDIR /var/www/project
+WORKDIR /var/www/html
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
