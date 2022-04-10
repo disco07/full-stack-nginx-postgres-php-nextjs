@@ -4,8 +4,8 @@ RUN rm -rf /app/*
 COPY package*.json .
 CMD npm install
 COPY . .
-CMD npm run build
-CMD npx next export
+RUN npm run build
+RUN npx next export
 
 FROM nginx
 ## Remove default nginx index page
