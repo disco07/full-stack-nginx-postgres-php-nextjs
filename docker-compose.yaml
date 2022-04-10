@@ -7,18 +7,71 @@ services:
   nginx:
     build: ./deploy
     container_name: nginx
+    restart: on-failure
     ports:
       - "8080:80"
-#    depends_on:
-#      - php
-#    volumes:
-#      - ./api:/var/www/html
-#      - ./deploy/default.conf:/etc/nginx/conf.d/default.conf
-#    networks:
-#      - full-stack-networks
+    depends_on:
+      - api
+      - client
+    networks:
+      - full-stack-networks
 
   api:
     build: ./api
     container_name: php
+    restart: on-failure
     ports:
-      - "8000:8000"
+      - "9000:9000"
+    depends_on:
+      - postgres
+    volumes:
+      - ./api/server:/var/www/html
+    networks:
+      - full-stack-networks
+
+  client:
+    build: ./client
+    container_name: client
+    restart: on-failure
+    #ports:
+    #  - '3000:3000'
+    volumes:
+      - /app/node_modules # Inside the container, don't try to override this folder, just leave as is
+    networks:
+      - full-stack-networks
+
+  postgres:
+    image: postgres
+    container_name: postgres
+    restart: on-failure
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-partaudit}
+      # You should definitely change the password in production
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ChangeMe}
+      POSTGRES_USER: ${POSTGRES_USER:-symfony}
+    volumes:
+      - db-data:/var/lib/postgresql/data:rw
+    networks:
+      - full-stack-networks
+
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: on-failure
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=partaudit@pgadmin.org
+      - PGADMIN_DEFAULT_PASSWORD=7BixyPr25B28s7SQ
+    ports:
+      - '5050:80'
+    volumes:
+      - pgadmin:/root/.pgadmin
+    networks:
+      - full-stack-networks
+
+
+volumes:
+  db-data:
+  pgadmin:
