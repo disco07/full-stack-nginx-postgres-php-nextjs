@@ -4,16 +4,6 @@ networks:
   full-stack-networks:
 
 services:
-  client:
-    build:
-      context: .
-      dockerfile: client/Dockerfile
-    container_name: client
-    volumes:
-      - /app/node_modules # Inside the container, don't try to override this folder, just leave as is
-    networks:
-      - full-stack-networks
-
   api:
     image: nginx:latest
     container_name: api
@@ -36,6 +26,16 @@ services:
       - postgres
     volumes:
       - ./api/server:/var/www/html
+    networks:
+      - full-stack-networks
+
+  client:
+    build:
+      context: .
+      dockerfile: client/Dockerfile
+    container_name: client
+    volumes:
+      - /app/node_modules
     networks:
       - full-stack-networks
 
