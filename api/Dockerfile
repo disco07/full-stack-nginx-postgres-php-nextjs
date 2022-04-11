@@ -1,4 +1,4 @@
-FROM php:8.1.4-fpm as php
+FROM php:8.1.4-fpm as build_php
 
 RUN apt-get update && apt-get install -y zlib1g-dev g++ git libicu-dev zip libzip-dev zip \
     && docker-php-ext-install intl opcache pdo pdo_mysql \
@@ -21,9 +21,10 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN curl -sS https://get.symfony.com/cli/installer | bash
 RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
 
+ENTRYPOINT ["docker-entrypoint"]
+CMD ["php-fpm"]
+
 FROM nginx
-## Remove default nginx index page
-RUN rm -rf /usr/share/nginx/html/*
-COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY --from=php /var/www/html /usr/share/nginx/html
+COPY ./api/nginx/default.conf /etc/nginx/conf.d/default.conf
+WORKDIR /var/www/html/public
 EXPOSE 9000

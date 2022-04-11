@@ -1,15 +1,15 @@
-FROM node:latest as build
+FROM node as build
 WORKDIR /app
-RUN rm -rf /app/*
-COPY package*.json .
-CMD npm install
-COPY . .
-RUN npm run build
-RUN npx next export
+COPY ./client/package.json ./
+RUN npm install
+COPY ./client ./
+
+#FROM build AS client_build
+#RUN npm run build
 
 FROM nginx
-## Remove default nginx index page
 RUN rm -rf /usr/share/nginx/html/*
-COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY --from=build /app/out /usr/share/nginx/html
+COPY ./client/nginx/default.conf /etc/nginx/conf.d/default.conf
+WORKDIR /app/out
+COPY --from=build /app/out ./
 EXPOSE 3000

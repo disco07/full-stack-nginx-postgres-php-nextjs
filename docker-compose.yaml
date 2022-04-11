@@ -4,22 +4,21 @@ networks:
   full-stack-networks:
 
 services:
-  nginx:
-    build: ./deploy
-    container_name: nginx
-    restart: on-failure
-    ports:
-      - "8080:80"
-    depends_on:
-      - api
-      - client
+  client:
+    build:
+      context: .
+      dockerfile: client/Dockerfile
+    container_name: client
+    volumes:
+      - /app/node_modules # Inside the container, don't try to override this folder, just leave as is
     networks:
       - full-stack-networks
 
   api:
-    build: ./api
+    build:
+      context: .
+      dockerfile: api/Dockerfile
     container_name: php
-    restart: on-failure
     ports:
       - "9000:9000"
     depends_on:
@@ -29,14 +28,17 @@ services:
     networks:
       - full-stack-networks
 
-  client:
-    build: ./client
-    container_name: client
+  nginx:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile
+    container_name: nginx
     restart: on-failure
-    #ports:
-    #  - '3000:3000'
-    volumes:
-      - /app/node_modules # Inside the container, don't try to override this folder, just leave as is
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+      - client
     networks:
       - full-stack-networks
 
