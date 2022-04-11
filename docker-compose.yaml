@@ -46,7 +46,7 @@ services:
     container_name: nginx
     restart: on-failure
     ports:
-      - "8080:80"
+      - "80:80"
     depends_on:
       - client
     networks:
