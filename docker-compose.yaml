@@ -13,7 +13,7 @@ services:
     depends_on:
       - php
     ports:
-      - "9001:9000"
+      - "7001:7000"
     networks:
       - full-stack-networks
 
@@ -21,7 +21,7 @@ services:
     build: api
     container_name: php
     ports:
-      - "9000:9000"
+      - "7000:7000"
     depends_on:
       - postgres
     volumes:
@@ -79,6 +79,21 @@ services:
       - '5050:80'
     volumes:
       - pgadmin:/root/.pgadmin
+    networks:
+      - full-stack-networks
+
+  minio:
+    image: minio/minio
+    container_name: minio
+    environment:
+      MINIO_ROOT_USER: access1234
+      MINIO_ROOT_PASSWORD: secret1234
+    volumes:
+      - ./data/minio:/data
+    command: server /data --console-address ":9001"
+    ports:
+      - "9000:9000"
+      - "9001:9001"
     networks:
       - full-stack-networks
 

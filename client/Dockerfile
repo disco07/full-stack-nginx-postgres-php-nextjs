@@ -1,5 +1,6 @@
 FROM node as build
 WORKDIR /app
+RUN npm install -g npm@8.6.0
 COPY ./client/package.json ./
 RUN npm install
 COPY ./client ./
