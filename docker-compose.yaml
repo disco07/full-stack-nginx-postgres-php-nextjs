@@ -99,6 +99,7 @@ services:
     networks:
       - full-stack-networks
 
+
 volumes:
   db-data:
   pgadmin:
