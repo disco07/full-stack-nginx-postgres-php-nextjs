@@ -73,8 +73,8 @@ services:
     container_name: pgadmin
     restart: on-failure
     environment:
-      - PGADMIN_DEFAULT_EMAIL=partaudit@pgadmin.org
-      - PGADMIN_DEFAULT_PASSWORD=7BixyPr25B28s7SQ
+      PGADMIN_DEFAULT_EMAIL: partaudit@pgadmin.org
+      PGADMIN_DEFAULT_PASSWORD: 7BixyPr25B28s7SQ
     ports:
       - '5050:80'
     volumes:
