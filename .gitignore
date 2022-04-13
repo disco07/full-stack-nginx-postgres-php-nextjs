@@ -28,4 +28,4 @@ client/tsconfig.json
 client/tsconfig.tsbuildinfo
 client/yarn.lock
 
-
+.env.local
