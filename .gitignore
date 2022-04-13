@@ -1,18 +1,18 @@
 ### Example user template template
 ### Example user template
 
-api/server
+api/server/*
 
-client/.github/
-client/.husky/
-client/.idea/
-client/.next/
-client/components/
-client/node_modules/
-client/out/
-client/pages/
-client/public/
-client/styles/
+client/.github/*
+client/.husky/*
+client/.idea/*
+client/.next/*
+client/components/*
+client/node_modules/*
+client/out/*
+client/pages/*
+client/public/*
+client/styles/*
 client/.babelrc
 client/.eslintignore
 client/.eslintrc.js
