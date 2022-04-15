@@ -4,5 +4,9 @@
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/api/server" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/client" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/client/client/partaudit-front" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/client/front" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/client/front-end" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/client/frontend" vcs="Git" />
   </component>
 </project>

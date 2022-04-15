@@ -3,29 +3,6 @@
 
 api/server/*
 
-client/.github/*
-client/.husky/*
-client/.idea/*
-client/.next/*
-client/components/*
-client/node_modules/*
-client/out/*
-client/pages/*
-client/public/*
-client/styles/*
-client/.babelrc
-client/.eslintignore
-client/.eslintrc.js
-client/.eslintrc.json
-client/.prettierignore
-client/.prettierrc
-client/next.config.js
-client/next-env.d.ts
-client/package.json
-client/package-lock.json
-client/README.md
-client/tsconfig.json
-client/tsconfig.tsbuildinfo
-client/yarn.lock
+client/front-end/*
 
 .env.local
