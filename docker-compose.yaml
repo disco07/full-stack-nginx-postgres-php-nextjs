@@ -34,6 +34,8 @@ services:
       context: .
       dockerfile: client/Dockerfile
     container_name: client
+    depends_on:
+      - api
     volumes:
       - /app/node_modules
     networks:
@@ -47,8 +49,6 @@ services:
     restart: on-failure
     ports:
       - "80:80"
-    depends_on:
-      - client
     networks:
       - full-stack-networks
 
