@@ -36,6 +36,7 @@ services:
     container_name: client
     depends_on:
       - api
+      - php
     volumes:
       - /app/node_modules
     networks:
@@ -46,6 +47,9 @@ services:
       context: .
       dockerfile: deploy/Dockerfile
     container_name: nginx
+    depends_on:
+      - api
+      - client
     restart: on-failure
     ports:
       - "80:80"

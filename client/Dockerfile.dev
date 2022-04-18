@@ -1,0 +1,9 @@
+FROM node as build
+WORKDIR /app
+RUN rm -rf ./*
+RUN npm install -g npm@8.6.0
+COPY ./client/front-end/package.json .
+RUN npm install --force
+COPY ./client/front-end ./
+EXPOSE 3000
+CMD ["npm", "start"]
