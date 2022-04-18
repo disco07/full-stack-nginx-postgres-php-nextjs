@@ -2,6 +2,11 @@ version: "3"
 
 networks:
   full-stack-networks:
+    driver: bridge
+    ipam:
+      config:
+          - subnet: 172.28.0.0/16
+            gateway: 172.28.0.1
 
 services:
   api:
