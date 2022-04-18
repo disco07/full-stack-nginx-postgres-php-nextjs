@@ -90,23 +90,6 @@ services:
     networks:
       - full-stack-networks
 
-#  minio:
-#    build:
-#      context: .
-#      dockerfile: deploy/Dockerfile
-#    container_name: minio
-#    environment:
-#      MINIO_ROOT_USER: access1234
-#      MINIO_ROOT_PASSWORD: secret1234
-#    volumes:
-#      - ./data/minio:/data
-#    command: server /data --console-address ":9001"
-#    ports:
-#      - "9000:9000"
-#      - "9001:9001"
-#    networks:
-#      - full-stack-networks
-
 volumes:
   db-data:
   pgadmin:
