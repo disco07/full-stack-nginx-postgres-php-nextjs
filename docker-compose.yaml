@@ -17,8 +17,8 @@ services:
       - ./api/nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - php
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+#    extra_hosts:
+#      - "host.docker.internal:host-gateway"
     ports:
       - "9001:9000"
     networks:
